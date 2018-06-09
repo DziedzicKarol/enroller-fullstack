@@ -19,6 +19,7 @@
       </button>
       <login-form @login="login($event)"
       v-if="!isRegistering"></login-form>
+
       <login-form @register="login($event)"
       v-else></login-form>
 
@@ -45,6 +46,16 @@
             },
             logout() {
                 this.authenticatedUsername = '';
+            },
+
+            register(user) {
+                this.$http.post('participants', user)
+                    .then(response => {
+                        // udało się
+                    })
+                    .catch(response => {
+                        // nie udało sie
+                    });
             }
         }
     };
